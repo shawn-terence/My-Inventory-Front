@@ -1,19 +1,16 @@
 import { Route, Routes } from "react-router-dom";
-
-import IndexPage from "@/pages/index";
-import DocsPage from "@/pages/docs";
-import PricingPage from "@/pages/pricing";
-import BlogPage from "@/pages/blog";
-import AboutPage from "@/pages/about";
+import Home from './pages/Home'
+import InventoryPage from './pages/Inventory'
+import SaleTerminal from './pages/Sales'
+import Statisstics from './pages/Statistics'
 
 function App() {
   return (
     <Routes>
-      <Route element={<IndexPage />} path="/" />
-      <Route element={<DocsPage />} path="/docs" />
-      <Route element={<PricingPage />} path="/pricing" />
-      <Route element={<BlogPage />} path="/blog" />
-      <Route element={<AboutPage />} path="/about" />
+      <Route path="/" element={<Home />} />
+      <Route path="/inventory" element={<InventoryPage />} />
+      <Route path="/sale-terminal" element={<SaleTerminal />} />
+      <Route path="/statistics" element={<Statisstics />} />
     </Routes>
   );
 }
