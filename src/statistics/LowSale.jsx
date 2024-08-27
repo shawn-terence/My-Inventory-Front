@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 
 function LowSale() {
     const [chartData, setChartData] = useState({});
+    const[transactions,setTransactions]=useState([])
 
     useEffect(() => {
         const fetchTransactions = async () => {
