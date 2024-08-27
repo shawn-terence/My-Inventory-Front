@@ -11,9 +11,10 @@ import {
     TableCell,
     getKeyValue
   } from "@nextui-org/table";
-  import MonthlySale from "../statistics/MonthlySale";
-  import CurrentSale from "../statistics/CurrentSale";
+import MonthlySale from "../statistics/MonthlySale";
+import CurrentSale from "../statistics/CurrentSale";
 import axios from "axios";
+import { Spacer } from "@nextui-org/react";
 //   import HighSale from "../statistics/HighSale";
   function Home(){
     const [transactions, setTransactions] = useState([]);
@@ -106,8 +107,7 @@ import axios from "axios";
                 <CurrentSale/>
                 <MonthlySale/>
             </div> 
-            <div id="Cdiv" className=" grid grid-cols-2">
-            <div>
+            <div id="Cdiv" className="grid grid-cols-2 gap-2">
                 <div>
                 <h2>Items Low In Stock</h2>
                 <Table>
@@ -125,8 +125,6 @@ import axios from "axios";
                     </TableBody>
                 </Table>
                 </div>
-
-            </div>
                 <div>
                     <h2>Recent Transactions</h2>
                     <Table aria-label="Recent transactions">
@@ -145,11 +143,6 @@ import axios from "axios";
                     </Table>
                 </div>
             </div>
-
-
-                
-   
-
         </DefaultLayout>
 
     )
