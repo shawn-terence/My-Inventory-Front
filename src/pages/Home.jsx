@@ -1,18 +1,86 @@
 import DefaultLayout from "../layouts/default";
 import {Card, CardHeader, CardBody, CardFooter} from "@nextui-org/card"
 import "../styles/App.css"
+import {useState, useEffect} from "react";
 import {
     Table,
     TableHeader,
     TableBody,
     TableColumn,
     TableRow,
-    TableCell
+    TableCell,
+    getKeyValue
   } from "@nextui-org/table";
   import MonthlySale from "../statistics/MonthlySale";
   import CurrentSale from "../statistics/CurrentSale";
+import axios from "axios";
 //   import HighSale from "../statistics/HighSale";
   function Home(){
+    const [transactions, setTransactions] = useState([]);
+    const [items, setItems] = useState([]);
+  
+    useEffect(() => {
+      const fetchTransactions = async () => {
+        try {
+          const response = await axios.get('http://127.0.0.1:8000/transactions/');
+          if (Array.isArray(response.data)) {
+            // Sort transactions by date in descending order and limit to 10
+            const sortedTransactions = response.data.sort((a, b) => new Date(b.date) - new Date(a.date));
+            const recentTransactions = sortedTransactions.slice(0, 10);
+            setTransactions(recentTransactions);
+          } else {
+            console.error('Expected an array but got:', response.data);
+          }
+        } catch (error) {
+          console.error('Error fetching transactions:', error);
+        }
+      };
+  
+      fetchTransactions();
+    }, []);
+  
+    useEffect(() => {
+      const fetchItems = async () => {
+        try {
+          const response = await axios.get('http://127.0.0.1:8000/inventory/');
+          if (Array.isArray(response.data)) {
+            // Filter items with stock less than 5
+            const lowStockItems = response.data.filter(item => item.quantity < 5);
+            setItems(lowStockItems);
+          } else {
+            console.error('Expected an array but got:', response.data);
+          }
+        } catch (error) {
+          console.error('Error fetching inventory items:', error);
+        }
+      };
+  
+      fetchItems();
+    }, []);
+  
+    const transactionColumns = [
+      { key: 'name', label: 'Item' },
+      { key: 'quantity', label: 'Quantity' },
+      { key: 'date', label: 'Date' },
+    ];
+  
+    const transactionRows = transactions.map(transaction => ({
+      key: transaction.id,
+      name: transaction.name,
+      quantity: transaction.quantity,
+      date: transaction.date,
+    }));
+  
+    const itemColumns = [
+      { key: 'item', label: 'Item' },
+      { key: 'remaining', label: 'Remaining' },
+    ];
+  
+    const itemRows = items.map(item => ({
+      key: item.id,
+      item: item.name,
+      remaining: item.quantity,
+    }));
     return(
         <DefaultLayout>
             <h1 className="text-center text-xl font-black">WELCOME TO THE DASHBOARD</h1>
@@ -42,43 +110,37 @@ import {
             <div>
                 <div>
                 <h2>Items Low In Stock</h2>
-                <Table >
+                <Table>
                     <TableHeader>
-                        <TableColumn>Item</TableColumn>
-                        <TableColumn>remaining</TableColumn>
+                    {itemColumns.map(column => (
+                        <TableColumn key={column.key}>{column.label}</TableColumn>
+                    ))}
                     </TableHeader>
-                    <TableBody>
-                        <TableRow key="1">
-                            <TableCell>Hello</TableCell>
-                            <TableCell>2</TableCell>
+                    <TableBody emptyContent={"No Items are low in stock"}>
+                    {itemRows.map(row => (
+                        <TableRow key={row.key}>
+                        {columnKey => <TableCell>{getKeyValue(row, columnKey)}</TableCell>}
                         </TableRow>
-                        <TableRow key="2">
-                            <TableCell>Hello</TableCell>
-                            <TableCell></TableCell>
-                        </TableRow>
+                    ))}
                     </TableBody>
                 </Table>
                 </div>
 
             </div>
                 <div>
-                    <h2>
-                        Recent Transactions
-                    </h2>
-                    <Table className="ml-2">
+                    <h2>Recent Transactions</h2>
+                    <Table aria-label="Recent transactions">
                         <TableHeader>
-                            <TableColumn>Item</TableColumn>
-                            <TableColumn>Quantity</TableColumn>
+                        {transactionColumns.map(column => (
+                            <TableColumn key={column.key}>{column.label}</TableColumn>
+                        ))}
                         </TableHeader>
                         <TableBody>
-                            <TableRow key="1">
-                                <TableCell>Item 1</TableCell>
-                                <TableCell>30</TableCell>
+                        {transactionRows.map(row => (
+                            <TableRow key={row.key}>
+                            {columnKey => <TableCell>{getKeyValue(row, columnKey)}</TableCell>}
                             </TableRow>
-                            <TableRow key="2">
-                                <TableCell>Item 2</TableCell>
-                                <TableCell>30</TableCell>
-                            </TableRow>
+                        ))}
                         </TableBody>
                     </Table>
                 </div>
