@@ -2,29 +2,26 @@ import React from 'react'
 import DefaultLayout from "../layouts/default";
 import BarChart from "../components/BarChart";
 import { useState, useEffect } from "react";
-import { Result } from 'postcss';
 
-
-function HighSale() {
+function LowSale() {
     const [chartData, setChartData] = useState({});
-    const [transactions, setTransactions] = useState([]);
 
     useEffect(() => {
-      const fetchTransactions = async () => {
-        try {
-          const response = await axios.get(`http://127.0.0.1:8000/transactions/`);
-          if (Array.isArray(response.data)) {
-            setTransactions(response.data);
-          } else {
-            console.error('Expected an array but got:', response.data);
+        const fetchTransactions = async () => {
+          try {
+            const response = await axios.get(`http://127.0.0.1:8000/transactions/`);
+            if (Array.isArray(response.data)) {
+              setTransactions(response.data); // Ensure response data is an array
+            } else {
+              console.error('Expected an array but got:', response.data);
+            }
+          } catch (error) {
+            console.error('Error fetching transactions:', error);
           }
-        } catch (error) {
-          console.error('Error fetching transactions:', error);
-        }
-      };
-  
-      fetchTransactions();
-    }, []);
+        };
+    
+        fetchTransactions();
+      }, []); 
     useEffect(() => {
       // Calculate last month
       const currentDate = new Date();
@@ -56,7 +53,7 @@ function HighSale() {
       const mostsold=(data)=>{
             const filtered_products={}
             for(const product in data){
-                if(data[product]>=10){
+                if(data[product]<=5){
                     filtered_products[product]=data[product]
             }
             }
@@ -73,7 +70,7 @@ function HighSale() {
           {
             label: "Quantity Sold",
             data,
-            backgroundColor: "#467349",
+            backgroundColor: "rgba(237, 11, 37, 1)",
             borderColor: "#333",
             borderWidth: 1
           }
@@ -83,11 +80,11 @@ function HighSale() {
   
     return (
         <div className='w-full'>
-          <h2>Highest selling Products last month</h2>
+          <h2>Lowest selling Products last month</h2>
           <BarChart ChartData={chartData} />
         </div>
 
     );
 }
 
-export default HighSale
+export default LowSale
