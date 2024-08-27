@@ -1,0 +1,68 @@
+body{
+    padding: 20px;
+    /* background-color: #f0f0f05d; */
+    font-weight: 600;
+    font-size: 1rem;
+}
+.Tcrds{
+    width: 50rem;
+    margin: 10px;
+}
+#AddButton,#EditButton,#SearchButton,#PurchaseButton,#Add,#Remove{
+    background-color:rgb(70, 115, 73);
+    color: white;
+    font-weight: bold;
+}
+#BarChart{
+    min-height: 350px;
+    min-width: 500px;
+    max-width: 42rem;
+}
+#DeleteButton,#ClearCart,#RemoveItem{
+    font-weight: bold;
+    background-color: rgba(201, 23, 23, 0.938);
+    color: white;
+}
+#NavBrand{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 20px;
+
+
+}
+#container{
+    background-color:rgba(245, 245, 245, 0) ;
+    
+}
+#searchInventory{
+    display: flex;
+    flex-direction: row;;
+    justify-content: center;
+}
+#Accordion{
+    background-color:white;
+    border: 1px;
+    -webkit-box-shadow: 10px 10px 41px -24px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 41px -24px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 41px -24px rgba(0,0,0,0.75)
+}
+#NavBar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+#Sidecontainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#SideBar{
+    display: flex;
+    flex-direction: column;
+}
+#inventoryButton,#saleButton,#statsButton {
+    border-radius: 50%;
+    height: 70px;
+}
