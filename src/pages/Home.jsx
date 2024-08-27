@@ -9,10 +9,9 @@ import {
     TableRow,
     TableCell
   } from "@nextui-org/table";
-//   import MonthlySale from "../statistics/MonthlySale";
+  import MonthlySale from "../statistics/MonthlySale";
 //   import HighSale from "../statistics/HighSale";
   function Home(){
-
     return(
         <DefaultLayout>
             <h1 className="text-center text-xl font-black">WELCOME TO THE DASHBOARD</h1>
@@ -34,10 +33,10 @@ import {
                     </CardBody>
                 </Card>
             </div>
-            {/* <div className= "flex w-full flex-row">
-                <HighSale/>
+            <div className= "flex w-full flex-row">
+
                 <MonthlySale/>
-            </div>  */}
+            </div> 
             <div id="Cdiv" className=" grid grid-cols-2">
             <div>
                 <div>
