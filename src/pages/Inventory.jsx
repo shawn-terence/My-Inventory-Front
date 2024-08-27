@@ -58,12 +58,12 @@ function InventoryPage() {
     } else {
       // Add new item
       try {
-        const response = await axios.post("http://localhost:8000/inventory/", {
+        const response = await axios.post("http://localhost:8000/inventory/add/", {
           ...newItem,
           id: Date.now() // Optionally generate an ID here if your backend does not auto-generate it
         });
         setInventoryItems([...inventoryItems, response.data]);
-        setNewItem({ id: "", name: "", quantity: "", price: "" });
+        setNewItem({ id: "", name: "",description:"", quantity: "", price: "" });
       } catch (error) {
         console.error("Error adding item:", error);
       }
@@ -77,7 +77,7 @@ function InventoryPage() {
 
   const handleDeleteItem = async (id) => {
     try {
-      await axios.delete(`http://localhost:8000/inventory/${id}/`);
+      await axios.delete(`http://localhost:8000/inventory/${id}/delete/`);
       setInventoryItems(inventoryItems.filter((item) => item.id !== id));
     } catch (error) {
       console.error("Error deleting item:", error);
@@ -120,12 +120,17 @@ function InventoryPage() {
 
         {/* Add or Edit Item Section */}
         <div className="add-item-section mb-6">
-          <h2>{isEditing ? "Edit Item" : "Add New Item"}</h2>
+          <h2>{isEditing ? "Edit Item" : "Add New Item Individually"}</h2>
           <div className="flex gap-4">
             <Input
               placeholder="Item Name"
               value={newItem.name}
               onChange={(e) => setNewItem({ ...newItem, name: e.target.value })}
+            />
+            <Input
+            placeholder="Description"
+            value={newItem.description}
+            onChange={(e) => setNewItem({ ...newItem, description: e.target.value })}
             />
             <Input
               placeholder="Quantity"

@@ -1,15 +1,28 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import DefaultLayout from "../layouts/default";
 import { Input, Button } from "@nextui-org/react";
-import inventoryData from "../data/db.json";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
 
 function SaleTerminal() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [cart, setCart] = useState([]);
+  const [inventory, setInventory] = useState([]);
 
-  const inventory = inventoryData.inventory;
+  useEffect(() => {
+    // Fetch inventory from the backend
+    const fetchInventory = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/inventory/");
+        setInventory(response.data);
+      } catch (error) {
+        console.error("Error fetching inventory:", error);
+      }
+    };
+
+    fetchInventory();
+  }, []);
 
   useEffect(() => {
     if (searchQuery.trim() !== "") {
@@ -20,7 +33,7 @@ function SaleTerminal() {
     } else {
       setFilteredProducts([]);
     }
-  }, [searchQuery]);
+  }, [searchQuery, inventory]);
 
   const addToCart = (item) => {
     const existingItem = cart.find((cartItem) => cartItem.id === item.id);
@@ -51,10 +64,25 @@ function SaleTerminal() {
     setCart(cart.filter((item) => item.id !== id));
   };
 
-  const confirmPurchase = () => {
-    // Implement purchase confirmation logic here (e.g., sending order details to the backend)
-    alert("Purchase confirmed!");
-    setCart([]); // Clear the cart after confirming the purchase
+  const confirmPurchase = async () => {
+    try {
+      const purchaseData = {
+        items: cart.map((item) => ({
+          id: item.id,
+          quantity: item.quantity,
+        })),
+      };
+      console.log(purchaseData)
+
+      await axios.post("http://localhost:8000/purchase/", purchaseData);
+
+      // Clear the cart after purchase
+      setCart([]);
+      alert("Purchase confirmed!");
+    } catch (error) {
+      console.error("Error confirming purchase:", error);
+      alert("There was an issue with the purchase. Please try again.");
+    }
   };
 
   const clearCart = () => {
@@ -71,7 +99,7 @@ function SaleTerminal() {
       <h1 className="text-center text-xl mb-4 mt-4">Sales Terminal</h1>
 
       {/* Search Section */}
-      <div className="search-section   items-center  flex flex-col">
+      <div className="search-section items-center flex flex-col">
         <Input
           placeholder="Search for an item"
           className="max-w-md"
@@ -88,10 +116,9 @@ function SaleTerminal() {
             className="product-item p-2 mb-2 flex space-x-4 rounded cursor-pointer hover:bg-gray-50 bg-gray-50"
             onClick={() => addToCart(item)}
           >
-            <p>{item.name}</p>            
+            <p>{item.name}</p>
             <p>{item.quantity}</p>
             <p>${item.price}</p>
-
           </div>
         ))}
       </div>
@@ -100,7 +127,7 @@ function SaleTerminal() {
       <div className="cart-section">
         <div className="rounded-lg bg-white p-2 shadow-lg shadow-slate-300 border-2">
           <h2 className="text-center">Cart</h2>
-          <Table isStriped aria-label="Cart Items" shadow="none"  >
+          <Table isStriped aria-label="Cart Items" shadow="none">
             <TableHeader>
               <TableColumn>Item Name</TableColumn>
               <TableColumn>Price</TableColumn>
@@ -109,7 +136,7 @@ function SaleTerminal() {
             </TableHeader>
             <TableBody emptyContent={"No items in cart"}>
               {cart.map((item) => (
-                <TableRow key={item.id} >
+                <TableRow key={item.id}>
                   <TableCell className="font-bold">{item.name}</TableCell>
                   <TableCell className="font-bold">{item.price}</TableCell>
                   <TableCell className="font-bold">{item.quantity}</TableCell>
