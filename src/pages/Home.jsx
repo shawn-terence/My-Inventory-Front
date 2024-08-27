@@ -10,6 +10,7 @@ import {
     TableCell
   } from "@nextui-org/table";
   import MonthlySale from "../statistics/MonthlySale";
+  import CurrentSale from "../statistics/CurrentSale";
 //   import HighSale from "../statistics/HighSale";
   function Home(){
     return(
@@ -34,7 +35,7 @@ import {
                 </Card>
             </div>
             <div className= "flex w-full flex-row">
-
+                <CurrentSale/>
                 <MonthlySale/>
             </div> 
             <div id="Cdiv" className=" grid grid-cols-2">
