@@ -6,7 +6,7 @@ import { Result } from 'postcss';
 
 function HighSale() {
     const [chartData, setChartData] = useState({});
-
+    const[transactions,setTransactions]=useState([])
     useEffect(() => {
         const fetchTransactions = async () => {
           try {
