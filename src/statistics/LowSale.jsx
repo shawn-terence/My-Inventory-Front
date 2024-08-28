@@ -60,7 +60,7 @@ function LowSale() {
             }
             return filtered_products
       }
-        const result=mostsold(aggregatedData)
+      const result=mostsold(aggregatedData)
       // Prepare data for Chart.js
       const labels = Object.keys(result);
       const data = Object.values(result);
