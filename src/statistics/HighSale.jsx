@@ -3,6 +3,7 @@ import DefaultLayout from "../layouts/default";
 import BarChart from "../components/BarChart";
 import { useState, useEffect } from "react";
 import { Result } from 'postcss';
+import axios from "axios";
 
 function HighSale() {
     const [chartData, setChartData] = useState({});
@@ -54,13 +55,14 @@ function HighSale() {
       const mostsold=(data)=>{
             const filtered_products={}
             for(const product in data){
-                if(data[product]>=10){
+                if(data[product]>=15){
                     filtered_products[product]=data[product]
             }
             }
-            return filtered_products
+          return filtered_products
       }
-        const result=mostsold(aggregatedData)
+      const result=mostsold(aggregatedData)
+      console.log(result)
       // Prepare data for Chart.js
       const labels = Object.keys(result);
       const data = Object.values(result);

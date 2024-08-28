@@ -39,7 +39,6 @@ function CurrentSale() {
         transactionDate.getMonth() + 1 === currentMonthNumber
       );
     });
-    console.log(transactions)
     // Aggregate data by item name
     const aggregatedData = currentMonthTransactions.reduce((acc, curr) => {
       if (!acc[curr.name]) {
