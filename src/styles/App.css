@@ -8,7 +8,7 @@ body{
     width: 50rem;
     margin: 10px;
 }
-#AddButton,#EditButton,#SearchButton,#PurchaseButton,#Add,#Remove{
+#AddButton,#UploadFile,#EditButton,#SearchButton,#PurchaseButton,#Add,#Remove{
     background-color:rgb(70, 115, 73);
     color: white;
     font-weight: bold;

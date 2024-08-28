@@ -23,7 +23,7 @@ function SideBar() {
                     hideIndicator={true}
                     title={<img src={menuIcon} className="size-8 ml-6" />}
                     >
-                    <Tooltip content="Go to Dashboard">
+                    <Tooltip content="Dashboard">
                         <Button
                         id="dashboardButton"
                         className="mb-6 p-6 bg-clear"
@@ -32,7 +32,7 @@ function SideBar() {
                         />
                     </Tooltip>
 
-                    <Tooltip content="View Inventory">
+                    <Tooltip content="Inventory Page">
                         <Button
                         id="inventoryButton"
                         className="mb-6 rounded-full bg-clear"
@@ -41,7 +41,7 @@ function SideBar() {
                         />
                     </Tooltip>
 
-                    <Tooltip content="Open Sales Terminal">
+                    <Tooltip content="Sale Terminal">
                         <Button
                         id="saleButton"
                         className="mb-6 p-6 bg-clear"
@@ -50,7 +50,7 @@ function SideBar() {
                         />
                     </Tooltip>
 
-                    <Tooltip content="View Statistics">
+                    <Tooltip content="Statistics Page">
                         <Button
                         id="statsButton"
                         className="mb-6 p-6 bg-clear"

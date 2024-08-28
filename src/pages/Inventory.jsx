@@ -20,6 +20,7 @@ function InventoryPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [page, setPage] = useState(1);
+  const [file, setFile] = useState(null); // New state for file upload
   const rowsPerPage = 10;
 
   // Fetch inventory items from the API
@@ -39,7 +40,6 @@ function InventoryPage() {
   // Handle adding a new item or updating an existing one
   const handleAddOrUpdateItem = async () => {
     if (isEditing) {
-      // Update existing item
       try {
         const response = await axios.put(
           `http://localhost:8000/inventory/${newItem.id}/`,
@@ -60,10 +60,10 @@ function InventoryPage() {
       try {
         const response = await axios.post("http://localhost:8000/inventory/add/", {
           ...newItem,
-          id: Date.now() // Optionally generate an ID here if your backend does not auto-generate it
+          id: Date.now()
         });
         setInventoryItems([...inventoryItems, response.data]);
-        setNewItem({ id: "", name: "",description:"", quantity: "", price: "" });
+        setNewItem({ id: "", name: "", description: "", quantity: "", price: "" });
       } catch (error) {
         console.error("Error adding item:", error);
       }
@@ -86,6 +86,31 @@ function InventoryPage() {
 
   const handleSearch = () => {
     setPage(1); // Reset to the first page when searching
+  };
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const handleFileUpload = async () => {
+    if (!file) {
+      alert("Please select a file to upload");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      await axios.post("http://localhost:8000/inventory/upload/", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      alert("File uploaded successfully");
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    }
   };
 
   // Filtered and paginated inventory items
@@ -128,9 +153,9 @@ function InventoryPage() {
               onChange={(e) => setNewItem({ ...newItem, name: e.target.value })}
             />
             <Input
-            placeholder="Description"
-            value={newItem.description}
-            onChange={(e) => setNewItem({ ...newItem, description: e.target.value })}
+              placeholder="Description"
+              value={newItem.description}
+              onChange={(e) => setNewItem({ ...newItem, description: e.target.value })}
             />
             <Input
               placeholder="Quantity"
@@ -150,6 +175,13 @@ function InventoryPage() {
               {isEditing ? "Update Item" : "Add Item"}
             </Button>
           </div>
+        </div>
+
+        {/* File Upload Section */}
+        <div className="file-upload-section mb-6">
+          <h2>Upload Spreadsheet</h2>
+          <input type="file" onChange={handleFileChange} />
+          <Button id="UploadFile" onClick={handleFileUpload}>Upload</Button>
         </div>
 
         {/* Inventory List Section */}
