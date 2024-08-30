@@ -19,13 +19,13 @@ function Statistics() {
         <Tabs>
           <Tab key="Sales" title="Sale Statistics">
             <h2 className="text-center">Sales Statistics for last month and this month</h2>
-            <div className="flex">
+            <div className="grid grid-cols-2 gap-2">
               <div className="w-full"><MonthlySale /></div>
               <div className="w-full"><CurrentSale /></div>
             </div>
             <div>
               <h2 className="text-center">Highest and Lowest Sales</h2>
-              <div className="grid grid-cols-2">
+              <div className="grid grid-cols-2 gap-2">
                 <div className="w-full"> <HighSale /></div>
                 <div className="w-full">
                 <LowSale />
