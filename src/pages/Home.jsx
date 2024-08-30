@@ -87,10 +87,6 @@ import { Spacer } from "@nextui-org/react";
                     </CardBody>
                 </Card>
             </div>
-            <div className= "flex w-full flex-row p-4">
-                <CurrentSale/>
-                <MonthlySale/>
-            </div> 
             <div id="Cdiv" className="grid grid-cols-2 gap-2">
               <LowStockProducts/>
                 <div>

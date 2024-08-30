@@ -82,7 +82,7 @@ function HighSale() {
     }, [transactions]);
   
     return (
-        <div className='w-full Bar-chart' id='HighSale'>
+        <div className='w-full ' id='HighSale'>
           <h2>Highest selling Products last month</h2>
           <BarChart ChartData={chartData} />
         </div>

@@ -19,13 +19,13 @@ function Statistics() {
         <Tabs>
           <Tab key="Sales" title="Sale Statistics">
             <h2 className="text-center">Sales Statistics for last month and this month</h2>
-            <div className="flex justify-around">
+            <div className="block">
               <MonthlySale />
               <CurrentSale />
             </div>
             <div>
               <h2 className="text-center">Highest and Lowest Sales</h2>
-              <div className="flex justify-around">
+              <div className="block">
                 <HighSale />
                 <LowSale />
               </div>
@@ -44,7 +44,7 @@ function Statistics() {
             <RecentlyAddedProducts/>
             <div className="w-full">
               <ProductValueDistribution />
-              </div>
+            </div>
           </Tab>
           <Tab key="Transaction" title="Transaction Records" className="p-6">
             <Transactions />

@@ -27,7 +27,7 @@ const BarChart = ({ ChartData }) => {
         data={ChartData}
         options={{
           responsive: true,
-          maintainAspectRatio: false,
+          maintainAspectRatio: true,
           scales: {
             y: {
               beginAtZero: true,

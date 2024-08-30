@@ -16,10 +16,8 @@ body{
 #ProductDist{
     padding: 20px;
 }
-.Bar-chart{
-    max-width: 39.5rem;
-    margin: 10px;
-    padding: 20px;
+#Dash{
+    max-width:100%;
 }
 #BarChart{
     min-height: 350px;
