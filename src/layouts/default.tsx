@@ -12,7 +12,7 @@ export default function DefaultLayout({
       <Navbar />
       <div id="container" className="flex  flex-grow ">
         <SideBar/> 
-        <main id="MainContainer" className=" bg-white container  h-fit pb-10 border shadow-lg rounded-xl mx-auto max-w-8xl px-6 flex-grow  ">
+        <main id="MainContainer" className=" bg-white container  h-fit pb-10 border shadow-lg rounded-xl mx-auto max-w-9xl px-6 flex-grow  ">
           {children}
         </main>
       </div>
