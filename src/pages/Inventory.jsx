@@ -117,7 +117,7 @@ function InventoryPage() {
     formData.append("file", file);
 
     try {
-      await axios.post("http://localhost:8000/inventory/upload/", formData, {
+      await axios.post("http://localhost:8000/upload/", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
