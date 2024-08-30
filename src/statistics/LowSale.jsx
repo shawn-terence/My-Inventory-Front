@@ -58,13 +58,15 @@ function LowSale() {
                     filtered_products[product]=data[product]
             }
             }
-            return filtered_products
+            
+        return filtered_products
+
       }
       const result=mostsold(aggregatedData)
       // Prepare data for Chart.js
       const labels = Object.keys(result);
       const data = Object.values(result);
-  
+      console.log(labels)
       setChartData({
         labels,
         datasets: [
@@ -77,7 +79,7 @@ function LowSale() {
           }
         ]
       });
-    }, []);
+    }, [transactions]);
   
     return (
         <div className='w-full'>

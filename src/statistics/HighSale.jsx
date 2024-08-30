@@ -62,7 +62,7 @@ function HighSale() {
           return filtered_products
       }
       const result=mostsold(aggregatedData)
-      console.log(result)
+      
       // Prepare data for Chart.js
       const labels = Object.keys(result);
       const data = Object.values(result);
@@ -79,7 +79,7 @@ function HighSale() {
           }
         ]
       });
-    }, []);
+    }, [transactions]);
   
     return (
         <div className='w-full'>
