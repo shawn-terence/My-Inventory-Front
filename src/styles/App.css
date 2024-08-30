@@ -13,10 +13,18 @@ body{
     color: white;
     font-weight: bold;
 }
+#ProductDist{
+    padding: 20px;
+}
+.Bar-chart{
+    max-width: 41rem;
+    margin: 10px;
+}
 #BarChart{
     min-height: 350px;
     min-width: 500px;
-    max-width: 42rem;
+
+    
 }
 #DeleteButton,#ClearCart,#RemoveItem{
     font-weight: bold;

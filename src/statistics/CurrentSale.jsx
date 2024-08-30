@@ -67,7 +67,7 @@ function CurrentSale() {
   }, [transactions]); // Re-run this effect whenever `transactions` change
 
   return (
-    <div className='w-full'>
+    <div id='CurrentSale' className='Bar-chart'>
       <h2>This Month's Sales Graph</h2>
       <BarChart ChartData={chartData} />
     </div>

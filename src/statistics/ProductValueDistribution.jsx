@@ -31,7 +31,7 @@ function ProductValueDistribution() {
     }, []);
 
     return (
-        <div className="w-full bg-danger items-center">
+        <div className="w-full items-center " id="ProductDist">
             <h3>Product Value Distribution</h3>
             <BarChart ChartData={chartData} />
         </div>

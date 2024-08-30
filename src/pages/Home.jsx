@@ -13,7 +13,9 @@ import {
   } from "@nextui-org/table";
 import MonthlySale from "../statistics/MonthlySale";
 import CurrentSale from "../statistics/CurrentSale";
+import TotalProducts from '../statistics/TotalProducts'
 import axios from "axios";
+import LowStockProducts from "../statistics/LowStockProducts";
 import { Spacer } from "@nextui-org/react";
 //   import HighSale from "../statistics/HighSale";
   function Home(){
@@ -108,23 +110,7 @@ import { Spacer } from "@nextui-org/react";
                 <MonthlySale/>
             </div> 
             <div id="Cdiv" className="grid grid-cols-2 gap-2">
-                <div>
-                <h2>Items Low In Stock</h2>
-                <Table>
-                    <TableHeader>
-                    {itemColumns.map(column => (
-                        <TableColumn key={column.key}>{column.label}</TableColumn>
-                    ))}
-                    </TableHeader>
-                    <TableBody emptyContent={"No Items are low in stock"}>
-                    {itemRows.map(row => (
-                        <TableRow key={row.key}>
-                        {columnKey => <TableCell>{getKeyValue(row, columnKey)}</TableCell>}
-                        </TableRow>
-                    ))}
-                    </TableBody>
-                </Table>
-                </div>
+              <LowStockProducts/>
                 <div>
                     <h2>Recent Transactions</h2>
                     <Table aria-label="Recent transactions">

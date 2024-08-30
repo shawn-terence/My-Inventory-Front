@@ -23,6 +23,7 @@ const BarChart = ({ ChartData }) => {
     <div className='m-4 w-full p-2'>
       <Bar
         id='BarChart'
+        className='Bar-Chart'
         data={ChartData}
         options={{
           responsive: true,

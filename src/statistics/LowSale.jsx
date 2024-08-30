@@ -82,7 +82,7 @@ function LowSale() {
     }, [transactions]);
   
     return (
-        <div className='w-full'>
+        <div className='Bar-chart' id='LowSale'>
           <h2>Lowest selling Products last month</h2>
           <BarChart ChartData={chartData} />
         </div>

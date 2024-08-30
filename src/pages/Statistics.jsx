@@ -17,15 +17,15 @@ function Statistics() {
       <div>
         <h1 className="text-center">STATISTICS PAGE</h1>
         <Tabs>
-          <Tab key="Sales" title="Sale Statistics" className="p-6">
+          <Tab key="Sales" title="Sale Statistics">
             <h2 className="text-center">Sales Statistics for last month and this month</h2>
-            <div className="flex">
+            <div className="flex justify-between">
               <MonthlySale />
               <CurrentSale />
             </div>
             <div>
               <h2 className="text-center">Highest and Lowest Sales</h2>
-              <div className="flex">
+              <div className="flex justify-between">
                 <HighSale />
                 <LowSale />
               </div>
@@ -40,8 +40,8 @@ function Statistics() {
 
                 <TopProducts />
                 <LowStockProducts />
-                <RecentlyAddedProducts/>
             </div>
+            <RecentlyAddedProducts/>
             <div className="w-full">
               <ProductValueDistribution />
               </div>

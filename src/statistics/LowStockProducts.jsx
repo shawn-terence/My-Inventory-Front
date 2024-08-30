@@ -38,7 +38,7 @@ function LowStockProducts() {
                         <TableColumn key={column.key}>{column.label}</TableColumn>
                     ))}
                 </TableHeader>
-                <TableBody>
+                <TableBody emptyContent={"No Items are low in stock"}>
                     {rows.map(row => (
                         <TableRow key={row.key}>
                             {columnKey => <TableCell>{getKeyValue(row, columnKey)}</TableCell>}

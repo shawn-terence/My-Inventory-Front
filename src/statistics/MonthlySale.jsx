@@ -75,7 +75,7 @@ const MonthlySale = () => {
   }, [transactions]);
 
   return (
-    <div id="MonthlyGraph" className="w-full">
+    <div id="MonthlyGraph" className="w-full Bar-chart">
       <h2>Sales Statistics for Last Month</h2>
       {noData ? (
         <p>No sales data available for last month.</p> // Display this message if there's no data
