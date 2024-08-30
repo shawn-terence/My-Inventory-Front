@@ -42,24 +42,6 @@ import { Spacer } from "@nextui-org/react";
       fetchTransactions();
     }, []);
   
-    useEffect(() => {
-      const fetchItems = async () => {
-        try {
-          const response = await axios.get('http://127.0.0.1:8000/inventory/');
-          if (Array.isArray(response.data)) {
-            // Filter items with stock less than 5
-            const lowStockItems = response.data.filter(item => item.quantity < 5);
-            setItems(lowStockItems);
-          } else {
-            console.error('Expected an array but got:', response.data);
-          }
-        } catch (error) {
-          console.error('Error fetching inventory items:', error);
-        }
-      };
-  
-      fetchItems();
-    }, []);
   
     const transactionColumns = [
       { key: 'name', label: 'Item' },
