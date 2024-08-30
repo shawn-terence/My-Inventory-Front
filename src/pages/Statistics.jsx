@@ -19,7 +19,7 @@ function Statistics() {
         <Tabs>
           <Tab key="Sales" title="Sale Statistics">
             <h2 className="text-center">Sales Statistics for last month and this month</h2>
-            <div className="flex justify-around bg-danger">
+            <div className="flex justify-around">
               <MonthlySale />
               <CurrentSale />
             </div>
