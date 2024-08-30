@@ -17,8 +17,8 @@ body{
     padding: 20px;
 }
 #BarChart{
-    max-width: 20rem;
-    max-height: 20rem;
+    max-width: 40rem;
+    max-height: 40rem;
 }
 #Dash{
     max-width:100%;

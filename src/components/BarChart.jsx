@@ -20,7 +20,7 @@ const BarChart = ({ ChartData }) => {
   }
 
   return (
-    <div className='m-4 p-2'>
+    <div className=' w-full'>
       <Bar
         id='BarChart'
         className='Bar-Chart'
