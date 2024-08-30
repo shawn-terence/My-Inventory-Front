@@ -16,7 +16,7 @@ body{
 #ProductDist{
     padding: 20px;
 }
-#BarChart{
+.BarChart{
     max-width: 40rem;
     max-height: 40rem;
 }
