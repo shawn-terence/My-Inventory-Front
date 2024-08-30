@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Card,CardHeader,CardBody,CardFooter } from "@nextui-org/react";
+import { Table, TableHeader, TableBody, TableColumn, TableRow, TableCell, getKeyValue } from "@nextui-org/table";
 function TopProducts() {
     const [topProducts, setTopProducts] = useState([]);
 
@@ -17,20 +18,36 @@ function TopProducts() {
 
         fetchTopProducts();
     }, []);
+    const columns = [
+        { key: 'name', label: 'Product Name' },
+        { key: 'quantity', label: 'Quantity' },
+    ];
 
+    const rows = topProducts.map(product => ({
+        key: product.id,
+        name: product.name,
+        quantity: product.quantity,
+    }));
     return (
         
-            <Card>
-                <CardHeader>Top Products by Quantity</CardHeader>
-                <CardBody>
-                    <ul>
-                        {topProducts.map((product) => (
-                            <li key={product.id}>{product.name}: {product.quantity}</li>
-                        ))}
-                    </ul>
-                </CardBody>
-            </Card>
-        
+        <div>
+            <h2>Top Products by Quantity</h2>
+            <Table aria-label="Top Products">
+                <TableHeader>
+                    {columns.map(column => (
+                        <TableColumn key={column.key}>{column.label}</TableColumn>
+                    ))}
+                </TableHeader>
+                <TableBody>
+                    {rows.map(row => (
+                        <TableRow key={row.key}>
+                            {columnKey => <TableCell>{getKeyValue(row, columnKey)}</TableCell>}
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+        </div>
+
     );
 }
 
