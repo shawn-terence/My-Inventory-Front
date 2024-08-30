@@ -8,7 +8,7 @@ body{
     width: 50rem;
     margin: 10px;
 }
-#AddButton,#UploadFile,#EditButton,#SearchButton,#PurchaseButton,#Add,#Remove{
+#AddButton,#UploadFile,#EditButton,#SearchButton,#PurchaseButton,#Add,#Remove,#CancelDelete{
     background-color:rgb(70, 115, 73);
     color: white;
     font-weight: bold;
@@ -26,7 +26,8 @@ body{
 
     
 }
-#DeleteButton,#ClearCart,#RemoveItem{
+
+#Confirm-Delete,#DeleteButton,#ClearCart,#RemoveItem{
     font-weight: bold;
     background-color: rgba(201, 23, 23, 0.938);
     color: white;
@@ -36,7 +37,6 @@ body{
     flex-direction: row;
     align-items: center;
     margin-left: 20px;
-
 
 }
 #container{

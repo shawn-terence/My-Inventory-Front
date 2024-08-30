@@ -16,10 +16,11 @@ function SideBar() {
       <div className="h-full flex flex-col p-2 items-center">
         <div id="Sidecontainer">
             <Tooltip content="Menu">
-                <Accordion>
+                <Accordion defaultExpandedKeys={["Menu"]}>
                     <AccordionItem
                     id="Accordion"
                     className="w-20 rounded-full"
+                    key="Menu"
                     hideIndicator={true}
                     title={<img src={menuIcon} className="size-8 ml-6" />}
                     >

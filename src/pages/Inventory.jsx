@@ -263,14 +263,15 @@ function InventoryPage() {
                   Confirm Delete
                 </ModalHeader>
                 <ModalBody>
-                  Are you sure you want to delete the item: {itemToDelete?.name}?
+                  <p>Are you sure you want to delete {itemToDelete?.name}?</p>
+                  <p>Deleting this item is irreversible</p>
                 </ModalBody>
                 <ModalFooter>
-                  <Button color="danger" variant="light" onPress={onClose}>
+                  <Button id="CancelDelete" variant="light" onPress={onClose}>
                     Cancel
                   </Button>
                   <Button
-                    color="primary"
+                    id="Confirm-Delete"
                     onPress={() => {
                       handleDeleteItem();
                       onClose();

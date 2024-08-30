@@ -81,7 +81,7 @@ function Transactions() {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-full p-2 border rounded mb-4"
         />
-        <Table aria-label="Transactions Table">
+        <Table isStriped aria-label="Transactions Table">
           <TableHeader>
             {transactionColumns.map((column) => (
               <TableColumn key={column.key}>{column.label}</TableColumn>
