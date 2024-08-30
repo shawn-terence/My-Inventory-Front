@@ -10,7 +10,7 @@ import LowStockProducts from "../statistics/LowStockProducts";
 import RecentlyAddedProducts from "../statistics/RecentlyAddedProducts";
 import ProductValueDistribution from "../statistics/ProductValueDistribution";
 import AverageProductPrice from "../statistics/AverageProductPrice";
-
+import Transactions from "../components/Transactions";
 function Statistics() {
   return (
     <DefaultLayout>
@@ -47,6 +47,7 @@ function Statistics() {
               </div>
           </Tab>
           <Tab key="Transaction" title="Transaction Records" className="p-6">
+            <Transactions />
           </Tab>
         </Tabs>
       </div>
