@@ -7,12 +7,17 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  Pagination
+  Pagination,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure
 } from "@nextui-org/react";
-import { Input } from "@nextui-org/react";
+import { Input, Spacer } from "@nextui-org/react";
 import DefaultLayout from "../layouts/default";
 import { Button } from "@nextui-org/button";
-import { Spacer } from "@nextui-org/react";
 
 function InventoryPage() {
   const [inventoryItems, setInventoryItems] = useState([]);
@@ -20,7 +25,9 @@ function InventoryPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [page, setPage] = useState(1);
-  const [file, setFile] = useState(null); // New state for file upload
+  const [file, setFile] = useState(null);
+  const [itemToDelete, setItemToDelete] = useState(null);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const rowsPerPage = 10;
 
   // Fetch inventory items from the API
@@ -56,7 +63,6 @@ function InventoryPage() {
         console.error("Error updating item:", error);
       }
     } else {
-      // Add new item
       try {
         const response = await axios.post("http://localhost:8000/inventory/add/", {
           ...newItem,
@@ -75,13 +81,22 @@ function InventoryPage() {
     setIsEditing(true);
   };
 
-  const handleDeleteItem = async (id) => {
-    try {
-      await axios.delete(`http://localhost:8000/inventory/${id}/delete/`);
-      setInventoryItems(inventoryItems.filter((item) => item.id !== id));
-    } catch (error) {
-      console.error("Error deleting item:", error);
+  const handleDeleteItem = async () => {
+    if (itemToDelete) {
+      try {
+        await axios.delete(`http://localhost:8000/inventory/${itemToDelete.id}/delete/`);
+        setInventoryItems(inventoryItems.filter((item) => item.id !== itemToDelete.id));
+        setItemToDelete(null);
+        onOpenChange(false); // Close the modal
+      } catch (error) {
+        console.error("Error deleting item:", error);
+      }
     }
+  };
+
+  const confirmDelete = (item) => {
+    setItemToDelete(item);
+    onOpen(); // Open the modal
   };
 
   const handleSearch = () => {
@@ -218,7 +233,8 @@ function InventoryPage() {
                     <Button
                       id="DeleteButton"
                       size="small"
-                      onClick={() => handleDeleteItem(item.id)}
+                      color="danger"
+                      onClick={() => confirmDelete(item)}
                     >
                       Delete
                     </Button>
@@ -237,9 +253,38 @@ function InventoryPage() {
             onChange={(newPage) => setPage(newPage)}
           />
         </div>
+
+        {/* Delete Confirmation Modal */}
+        <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+          <ModalContent>
+            {(onClose) => (
+              <>
+                <ModalHeader className="flex flex-col gap-1">
+                  Confirm Delete
+                </ModalHeader>
+                <ModalBody>
+                  Are you sure you want to delete the item: {itemToDelete?.name}?
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="danger" variant="light" onPress={onClose}>
+                    Cancel
+                  </Button>
+                  <Button
+                    color="primary"
+                    onPress={() => {
+                      handleDeleteItem();
+                      onClose();
+                    }}
+                  >
+                    Yes, Delete
+                  </Button>
+                </ModalFooter>
+              </>
+            )}
+          </ModalContent>
+        </Modal>
       </div>
     </DefaultLayout>
-  );
-}
-
-export default InventoryPage;
+  )
+  }
+  export default InventoryPage

@@ -9,7 +9,6 @@ import {
   TableCell,
   Pagination,
 } from "@nextui-org/react";
-import DefaultLayout from "../layouts/default";
 import { Input } from "@nextui-org/react";
 
 function Transactions() {
