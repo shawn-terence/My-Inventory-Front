@@ -9,7 +9,7 @@ function TopProducts() {
     useEffect(() => {
         const fetchTopProducts = async () => {
             try {
-                const response = await axios.get(`${api}/inventory/`);
+                const response = await axios.get(`https://my-inventory-backend.onrender.com/inventory/`);
                 const sortedProducts = response.data.sort((a, b) => b.quantity - a.quantity).slice(0, 5);
                 setTopProducts(sortedProducts);
             } catch (error) {

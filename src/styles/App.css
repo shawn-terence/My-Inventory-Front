@@ -75,7 +75,7 @@ body{
     border-radius: 50%;
     height: 70px;
 }
-@media screen and (max-width: 1000px) {
+/* @media screen and (max-width: 1000px) {
     #root {
       display: none;
       position: relative;
@@ -93,4 +93,4 @@ body{
       border: 1px solid #f5c6cb;
       border-radius: 5px;
     }
-  }
+  } */

@@ -35,7 +35,7 @@ function InventoryPage() {
   useEffect(() => {
     const fetchInventoryItems = async () => {
       try {
-        const response = await axios.get(`${api}/inventory/`);
+        const response = await axios.get(`https://my-inventory-backend.onrender.com/inventory/`);
         setInventoryItems(response.data);
       } catch (error) {
         console.error("Error fetching inventory:", error);
@@ -50,7 +50,7 @@ function InventoryPage() {
     if (isEditing) {
       try {
         const response = await axios.put(
-          `${api}/inventory/${newItem.id}/`,
+          `https://my-inventory-backend.onrender.com/inventory/${newItem.id}/`,
           newItem
         );
         setInventoryItems(
@@ -65,7 +65,7 @@ function InventoryPage() {
       }
     } else {
       try {
-        const response = await axios.post(`${api}/inventory/add/`, {
+        const response = await axios.post(`https://my-inventory-backend.onrender.com/inventory/add/`, {
           ...newItem,
           id: Date.now()
         });
@@ -85,7 +85,7 @@ function InventoryPage() {
   const handleDeleteItem = async () => {
     if (itemToDelete) {
       try {
-        await axios.delete(`${api}/inventory/${itemToDelete.id}/delete/`);
+        await axios.delete(`https://my-inventory-backend.onrender.com/inventory/${itemToDelete.id}/delete/`);
         setInventoryItems(inventoryItems.filter((item) => item.id !== itemToDelete.id));
         setItemToDelete(null);
         onOpenChange(false); // Close the modal
@@ -118,7 +118,7 @@ function InventoryPage() {
     formData.append("file", file);
 
     try {
-      await axios.post(`${api}/upload/`, formData, {
+      await axios.post(`https://my-inventory-backend.onrender.com/upload/`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

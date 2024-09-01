@@ -28,7 +28,7 @@ function Home() {
     useEffect(() => {
         const fetchTransactions = async () => {
             try {
-                const response = await axios.get(`${api}/transactions/`);
+                const response = await axios.get(`https://my-inventory-backend.onrender.com/transactions/`);
                 if (Array.isArray(response.data)) {
                     const sortedTransactions = response.data.sort((a, b) => new Date(b.date) - new Date(a.date));
                     const recentTransactions = sortedTransactions.slice(0, 10);
@@ -44,12 +44,12 @@ function Home() {
 
         fetchTransactions();
     }, []);
-
+    console.log(api)
     // Fetch items and calculate total items and total quantity
     useEffect(() => {
         const fetchItems = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/inventory/`); 
+                const response = await axios.get(`https://my-inventory-backend.onrender.com/inventory/`); 
                 if (Array.isArray(response.data)) {
                     setItems(response.data);
                     const totalItemsCount = response.data.length;

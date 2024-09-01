@@ -8,7 +8,7 @@ function TotalProducts() {
     useEffect(() => {
         const fetchTotalProducts = async () => {
             try {
-                const response = await axios.get(`${api}/inventory/`);
+                const response = await axios.get(`https://my-inventory-backend.onrender.com/inventory/`);
                 setTotalProducts(response.data.length);
             } catch (error) {
                 console.error('Error fetching total products:', error);

@@ -14,7 +14,7 @@ function SaleTerminal() {
     // Fetch inventory from the backend
     const fetchInventory = async () => {
       try {
-        const response = await axios.get(`${api}/inventory/`);
+        const response = await axios.get(`https://my-inventory-backend.onrender.com/inventory/`);
         setInventory(response.data);
       } catch (error) {
         console.error("Error fetching inventory:", error);
@@ -74,7 +74,7 @@ function SaleTerminal() {
       };
       console.log(purchaseData)
 
-      await axios.post(`${api}/purchase/`, purchaseData);
+      await axios.post(`https://my-inventory-backend.onrender.com/purchase/`, purchaseData);
 
       // Clear the cart after purchase
       setCart([]);

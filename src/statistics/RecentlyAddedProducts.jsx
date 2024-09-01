@@ -8,7 +8,7 @@ function RecentlyAddedProducts() {
     useEffect(() => {
         const fetchRecentProducts = async () => {
             try {
-                const response = await axios.get(`${api}/inventory/`);
+                const response = await axios.get(`https://my-inventory-backend.onrender.com/inventory/`);
                 if (Array.isArray(response.data)) {
                     // Sort products by creation date in descending order and limit to 5
                     const sortedProducts = response.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).slice(0, 5);

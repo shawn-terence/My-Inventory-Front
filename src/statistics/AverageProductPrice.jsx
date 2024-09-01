@@ -8,7 +8,7 @@ function AverageProductPrice() {
     useEffect(() => {
         const fetchAverageProductPrice = async () => {
             try {
-                const response = await axios.get(`${api}/inventory/`);
+                const response = await axios.get(`https://my-inventory-backend.onrender.com/inventory/`);
                 const totalValue = response.data.reduce((acc, product) => acc + product.price, 0);
                 setAveragePrice(totalValue / response.data.length);
             } catch (error) {

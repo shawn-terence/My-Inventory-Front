@@ -9,7 +9,7 @@ function ProductValueDistribution() {
     useEffect(() => {
         const fetchProductValueDistribution = async () => {
             try {
-                const response = await axios.get(`${api}/inventory/`);
+                const response = await axios.get(`https://my-inventory-backend.onrender.com/inventory/`);
                 const labels = response.data.map(product => product.name);
                 const data = response.data.map(product => product.price * product.quantity);
 

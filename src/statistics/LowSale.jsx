@@ -11,7 +11,7 @@ function LowSale() {
     useEffect(() => {
         const fetchTransactions = async () => {
           try {
-            const response = await axios.get(`${api}/transactions/`);
+            const response = await axios.get(`https://my-inventory-backend.onrender.com/transactions/`);
             if (Array.isArray(response.data)) {
               setTransactions(response.data); // Ensure response data is an array
             } else {

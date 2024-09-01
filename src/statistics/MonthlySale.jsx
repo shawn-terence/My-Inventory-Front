@@ -10,7 +10,7 @@ const MonthlySale = () => {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await axios.get(`${api}/transactions/`);
+        const response = await axios.get(`https://my-inventory-backend.onrender.com/transactions/`);
         setTransactions(response.data);
       } catch (err) {
         console.error(err);
