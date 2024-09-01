@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Card,CardHeader,CardBody,CardFooter } from "@nextui-org/react";
-import api from "../api";
+
 function AverageProductPrice() {
     const [averagePrice, setAveragePrice] = useState(0);
 

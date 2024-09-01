@@ -18,7 +18,7 @@ import {
 import { Input, Spacer } from "@nextui-org/react";
 import DefaultLayout from "../layouts/default";
 import { Button } from "@nextui-org/button";
-import api from "../api";
+
 
 function InventoryPage() {
   const [inventoryItems, setInventoryItems] = useState([]);
@@ -101,7 +101,7 @@ function InventoryPage() {
   };
 
   const handleSearch = () => {
-    setPage(1); // Reset to the first page when searching
+    setPage(1);
   };
 
   const handleFileChange = (e) => {

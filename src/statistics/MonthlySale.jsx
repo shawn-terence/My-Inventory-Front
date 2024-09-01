@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import BarChart from '../components/BarChart';
-import api from '../api';
+
 const MonthlySale = () => {
   const [chartData, setChartData] = useState({});
   const [transactions, setTransactions] = useState([]);

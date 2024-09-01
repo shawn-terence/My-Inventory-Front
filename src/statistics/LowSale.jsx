@@ -3,7 +3,7 @@ import DefaultLayout from "../layouts/default";
 import BarChart from "../components/BarChart";
 import { useState, useEffect } from "react";
 import axios from 'axios'
-import api from '../api';
+
 function LowSale() {
     const [chartData, setChartData] = useState({});
     const[transactions,setTransactions]=useState([])

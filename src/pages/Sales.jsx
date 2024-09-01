@@ -3,7 +3,7 @@ import axios from "axios";
 import DefaultLayout from "../layouts/default";
 import { Input, Button } from "@nextui-org/react";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
-import api from "../api";
+
 function SaleTerminal() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);

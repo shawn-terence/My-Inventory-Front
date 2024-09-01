@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import BarChart from "../components/BarChart";
 import axios from "axios";
 import { Card,CardHeader,CardBody,CardFooter } from "@nextui-org/react";
-import api from "../api";
+
 function ProductValueDistribution() {
     const [chartData, setChartData] = useState({});
 

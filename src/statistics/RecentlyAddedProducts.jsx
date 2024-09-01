@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Table, TableHeader, TableBody, TableColumn, TableRow, TableCell, getKeyValue } from "@nextui-org/table";
-import api from "../api";
+
 function RecentlyAddedProducts() {
     const [recentProducts, setRecentProducts] = useState([]);
 

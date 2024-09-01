@@ -4,7 +4,7 @@ import BarChart from "../components/BarChart";
 import { useState, useEffect } from "react";
 import { Result } from 'postcss';
 import axios from "axios";
-import api from '../api';
+
 function HighSale() {
     const [chartData, setChartData] = useState({});
     const[transactions,setTransactions]=useState([])

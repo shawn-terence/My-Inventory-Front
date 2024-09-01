@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Card,CardHeader,CardBody,CardFooter } from "@nextui-org/react";
 import { Table, TableHeader, TableBody, TableColumn, TableRow, TableCell, getKeyValue } from "@nextui-org/table";
-import api from "../api";
+
 function TopProducts() {
     const [topProducts, setTopProducts] = useState([]);
 

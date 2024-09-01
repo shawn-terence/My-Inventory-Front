@@ -15,7 +15,7 @@ import MonthlySale from "../statistics/MonthlySale";
 import CurrentSale from "../statistics/CurrentSale";
 import axios from "axios";
 import LowStockProducts from "../statistics/LowStockProducts";
-import api from "../api";
+
 
 function Home() {
     const [transactions, setTransactions] = useState([]);
@@ -33,7 +33,7 @@ function Home() {
                     const sortedTransactions = response.data.sort((a, b) => new Date(b.date) - new Date(a.date));
                     const recentTransactions = sortedTransactions.slice(0, 10);
                     setTransactions(recentTransactions);
-                    setNumberOfPurchases(response.data.length); // Set the number of purchases based on the number of transactions
+                    setNumberOfPurchases(response.data.length);
                 } else {
                     console.error('Expected an array but got:', response.data);
                 }
@@ -44,7 +44,6 @@ function Home() {
 
         fetchTransactions();
     }, []);
-    console.log(api)
     // Fetch items and calculate total items and total quantity
     useEffect(() => {
         const fetchItems = async () => {
@@ -89,7 +88,7 @@ function Home() {
                         <h2 className="text-xl font-bold">Total items in Stock</h2>
                     </CardHeader>
                     <CardBody>
-                        <h3>{totalQuantity}</h3> {/* Display the total quantity */}
+                        <h3>{totalQuantity}</h3>
                     </CardBody>
                 </Card>
                 <Card id="crd2" className="Tcrds">
@@ -97,7 +96,7 @@ function Home() {
                         <h2 className="text-xl font-bold">Number of Purchases</h2>
                     </CardHeader>
                     <CardBody>
-                        <h3>{numberOfPurchases}</h3> {/* Display the number of purchases */}
+                        <h3>{numberOfPurchases}</h3>
                     </CardBody>
                 </Card>
             </div>

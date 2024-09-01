@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Card,CardHeader,CardBody,CardFooter } from "@nextui-org/react";
-import api from "../api";
+
 function TotalProducts() {
     const [totalProducts, setTotalProducts] = useState(0);
 
@@ -19,10 +19,6 @@ function TotalProducts() {
     }, []);
 
     return (
-        // <div>
-        //     <h3>Total Products in Inventory</h3>
-        //     <p>{totalProducts}</p>
-        // </div>
         <Card>
             <CardHeader><h3>Total Products in Inventory</h3></CardHeader>
             <CardBody>{totalProducts}</CardBody>
