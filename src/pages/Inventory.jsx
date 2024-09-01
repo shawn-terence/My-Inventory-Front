@@ -18,6 +18,7 @@ import {
 import { Input, Spacer } from "@nextui-org/react";
 import DefaultLayout from "../layouts/default";
 import { Button } from "@nextui-org/button";
+import api from "../api";
 
 function InventoryPage() {
   const [inventoryItems, setInventoryItems] = useState([]);
@@ -34,7 +35,7 @@ function InventoryPage() {
   useEffect(() => {
     const fetchInventoryItems = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/inventory/");
+        const response = await axios.get(`${api}/inventory/`);
         setInventoryItems(response.data);
       } catch (error) {
         console.error("Error fetching inventory:", error);
@@ -49,7 +50,7 @@ function InventoryPage() {
     if (isEditing) {
       try {
         const response = await axios.put(
-          `http://localhost:8000/inventory/${newItem.id}/`,
+          `${api}/inventory/${newItem.id}/`,
           newItem
         );
         setInventoryItems(
@@ -64,7 +65,7 @@ function InventoryPage() {
       }
     } else {
       try {
-        const response = await axios.post("http://localhost:8000/inventory/add/", {
+        const response = await axios.post(`${api}/inventory/add/`, {
           ...newItem,
           id: Date.now()
         });
@@ -84,7 +85,7 @@ function InventoryPage() {
   const handleDeleteItem = async () => {
     if (itemToDelete) {
       try {
-        await axios.delete(`http://localhost:8000/inventory/${itemToDelete.id}/delete/`);
+        await axios.delete(`${api}/inventory/${itemToDelete.id}/delete/`);
         setInventoryItems(inventoryItems.filter((item) => item.id !== itemToDelete.id));
         setItemToDelete(null);
         onOpenChange(false); // Close the modal
@@ -117,7 +118,7 @@ function InventoryPage() {
     formData.append("file", file);
 
     try {
-      await axios.post("http://localhost:8000/upload/", formData, {
+      await axios.post(`${api}/upload/`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

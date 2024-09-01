@@ -3,7 +3,7 @@ import axios from "axios";
 import DefaultLayout from "../layouts/default";
 import { Input, Button } from "@nextui-org/react";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
-
+import api from "../api";
 function SaleTerminal() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -14,7 +14,7 @@ function SaleTerminal() {
     // Fetch inventory from the backend
     const fetchInventory = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/inventory/");
+        const response = await axios.get(`${api}/inventory/`);
         setInventory(response.data);
       } catch (error) {
         console.error("Error fetching inventory:", error);
@@ -74,7 +74,7 @@ function SaleTerminal() {
       };
       console.log(purchaseData)
 
-      await axios.post("http://localhost:8000/purchase/", purchaseData);
+      await axios.post(`${api}/purchase/`, purchaseData);
 
       // Clear the cart after purchase
       setCart([]);

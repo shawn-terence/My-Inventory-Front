@@ -15,6 +15,7 @@ import MonthlySale from "../statistics/MonthlySale";
 import CurrentSale from "../statistics/CurrentSale";
 import axios from "axios";
 import LowStockProducts from "../statistics/LowStockProducts";
+import api from "../api";
 
 function Home() {
     const [transactions, setTransactions] = useState([]);
@@ -27,7 +28,7 @@ function Home() {
     useEffect(() => {
         const fetchTransactions = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/transactions/');
+                const response = await axios.get(`${api}/transactions/`);
                 if (Array.isArray(response.data)) {
                     const sortedTransactions = response.data.sort((a, b) => new Date(b.date) - new Date(a.date));
                     const recentTransactions = sortedTransactions.slice(0, 10);
@@ -48,7 +49,7 @@ function Home() {
     useEffect(() => {
         const fetchItems = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/inventory/'); 
+                const response = await axios.get(`http://127.0.0.1:8000/inventory/`); 
                 if (Array.isArray(response.data)) {
                     setItems(response.data);
                     const totalItemsCount = response.data.length;

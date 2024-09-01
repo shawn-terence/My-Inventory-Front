@@ -8,7 +8,7 @@ function LowStockProducts() {
     useEffect(() => {
         const fetchLowStockProducts = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/inventory/`);
+                const response = await axios.get(`${api}/inventory/`);
                 const filteredProducts = response.data.filter(product => product.quantity < 10);
                 setLowStockProducts(filteredProducts);
             } catch (error) {

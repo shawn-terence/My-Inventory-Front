@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Table, TableHeader, TableBody, TableColumn, TableRow, TableCell, getKeyValue } from "@nextui-org/table";
-
+import api from "../api";
 function RecentlyAddedProducts() {
     const [recentProducts, setRecentProducts] = useState([]);
 
     useEffect(() => {
         const fetchRecentProducts = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/inventory/');
+                const response = await axios.get(`${api}/inventory/`);
                 if (Array.isArray(response.data)) {
                     // Sort products by creation date in descending order and limit to 5
                     const sortedProducts = response.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).slice(0, 5);

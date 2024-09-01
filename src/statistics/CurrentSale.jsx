@@ -2,18 +2,18 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DefaultLayout from "../layouts/default";
 import BarChart from "../components/BarChart";
-import api from '../api'; // Ensure you have an 'api.js' file exporting the base URL
+import api from '../api'; 
 
 function CurrentSale() {
   const [chartData, setChartData] = useState({});
-  const [transactions, setTransactions] = useState([]); // Initialize as an empty array
+  const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/transactions/`);
+        const response = await axios.get(`${api}/transactions/`);
         if (Array.isArray(response.data)) {
-          setTransactions(response.data); // Ensure response data is an array
+          setTransactions(response.data); 
         } else {
           console.error('Expected an array but got:', response.data);
         }
@@ -23,7 +23,7 @@ function CurrentSale() {
     };
 
     fetchTransactions();
-  }, []); // Empty dependency array ensures this runs only once
+  }, []);
 
   useEffect(() => {
     // Calculate the current month
@@ -64,7 +64,7 @@ function CurrentSale() {
         },
       ],
     });
-  }, [transactions]); // Re-run this effect whenever `transactions` change
+  }, [transactions]); 
 
   return (
     <div id='CurrentSale' className='BarChart'>

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import BarChart from '../components/BarChart';
-
+import api from '../api';
 const MonthlySale = () => {
   const [chartData, setChartData] = useState({});
   const [transactions, setTransactions] = useState([]);
-  const [noData, setNoData] = useState(false); // State to handle the no-data scenario
+  const [noData, setNoData] = useState(false); 
 
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/transactions/');
+        const response = await axios.get(`${api}/transactions/`);
         setTransactions(response.data);
       } catch (err) {
         console.error(err);
@@ -41,7 +41,7 @@ const MonthlySale = () => {
     });
 
     if (lastMonthTransactions.length === 0) {
-      setNoData(true); // Set noData to true if there are no transactions for the last month
+      setNoData(true); 
       return;
     }
 

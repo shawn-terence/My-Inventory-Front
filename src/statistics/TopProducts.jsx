@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Card,CardHeader,CardBody,CardFooter } from "@nextui-org/react";
 import { Table, TableHeader, TableBody, TableColumn, TableRow, TableCell, getKeyValue } from "@nextui-org/table";
+import api from "../api";
 function TopProducts() {
     const [topProducts, setTopProducts] = useState([]);
 
     useEffect(() => {
         const fetchTopProducts = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/inventory/`);
+                const response = await axios.get(`${api}/inventory/`);
                 const sortedProducts = response.data.sort((a, b) => b.quantity - a.quantity).slice(0, 5);
                 setTopProducts(sortedProducts);
             } catch (error) {

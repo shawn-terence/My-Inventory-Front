@@ -10,6 +10,7 @@ import {
   Pagination,
 } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
+import api from "../api";
 
 function Transactions() {
   const [transactions, setTransactions] = useState([]);
@@ -22,7 +23,7 @@ function Transactions() {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/transactions/`);
+        const response = await axios.get(`${api}/transactions/`);
         if (Array.isArray(response.data)) {
           setTransactions(response.data);
           setFilteredTransactions(response.data);

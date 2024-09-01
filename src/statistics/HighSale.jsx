@@ -4,14 +4,14 @@ import BarChart from "../components/BarChart";
 import { useState, useEffect } from "react";
 import { Result } from 'postcss';
 import axios from "axios";
-
+import api from '../api';
 function HighSale() {
     const [chartData, setChartData] = useState({});
     const[transactions,setTransactions]=useState([])
     useEffect(() => {
         const fetchTransactions = async () => {
           try {
-            const response = await axios.get(`http://127.0.0.1:8000/transactions/`);
+            const response = await axios.get(`${api}/transactions/`);
             if (Array.isArray(response.data)) {
               setTransactions(response.data); // Ensure response data is an array
             } else {
@@ -51,7 +51,6 @@ function HighSale() {
         acc[curr.name] += curr.quantity;
         return acc;
       }, {});
-      //products that sold more than ten items
       const mostsold=(data)=>{
             const filtered_products={}
             for(const product in data){

@@ -3,6 +3,7 @@ import DefaultLayout from "../layouts/default";
 import BarChart from "../components/BarChart";
 import { useState, useEffect } from "react";
 import axios from 'axios'
+import api from '../api';
 function LowSale() {
     const [chartData, setChartData] = useState({});
     const[transactions,setTransactions]=useState([])
@@ -10,7 +11,7 @@ function LowSale() {
     useEffect(() => {
         const fetchTransactions = async () => {
           try {
-            const response = await axios.get(`http://127.0.0.1:8000/transactions/`);
+            const response = await axios.get(`${api}/transactions/`);
             if (Array.isArray(response.data)) {
               setTransactions(response.data); // Ensure response data is an array
             } else {

@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import BarChart from "../components/BarChart";
 import axios from "axios";
 import { Card,CardHeader,CardBody,CardFooter } from "@nextui-org/react";
+import api from "../api";
 function ProductValueDistribution() {
     const [chartData, setChartData] = useState({});
 
     useEffect(() => {
         const fetchProductValueDistribution = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/inventory/`);
+                const response = await axios.get(`${api}/inventory/`);
                 const labels = response.data.map(product => product.name);
                 const data = response.data.map(product => product.price * product.quantity);
 
