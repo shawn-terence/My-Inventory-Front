@@ -14,7 +14,7 @@ ChartJS.register(
 );
 
 const BarChart = ({ ChartData }) => {
-  // Add a fallback check in case ChartData is not ready yet
+  //fallback check in case ChartData is not ready yet
   if (!ChartData || !ChartData.labels || !ChartData.datasets) {
     return <div><Spinner color='success' label="Loading..." size="lg" /></div>;
   }

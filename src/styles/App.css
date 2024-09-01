@@ -75,3 +75,22 @@ body{
     border-radius: 50%;
     height: 70px;
 }
+@media screen and (max-width: 1000px) {
+    #root {
+      display: none;
+      position: relative;
+    }
+  
+    body::before {
+      content: "Error: Unsupported Device. This website is only viewable on laptops and desktops. Please access it from a laptop or desktop computer.";
+      display: block;
+      text-align: center;
+      padding: 20px;
+      font-size: 18px;
+      color: #721c24;
+      background-color: #f8d7da;
+      margin: 20px;
+      border: 1px solid #f5c6cb;
+      border-radius: 5px;
+    }
+  }
